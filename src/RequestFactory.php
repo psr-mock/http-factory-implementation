@@ -5,11 +5,26 @@ declare(strict_types=1);
 namespace PsrMock\Psr17;
 
 use PsrMock\Psr7\{Request, Uri};
-use Psr\Http\Message\{RequestFactoryInterface, RequestInterface};
+use Psr\Http\Message\{RequestFactoryInterface, RequestInterface, StreamInterface, UriInterface};
 
 final class RequestFactory implements RequestFactoryInterface
 {
+    public static function create(
+        string $method,
+        UriInterface|string $uri,
+        string $protocolVersion = '1.1',
+        array $headers = [],
+        ?StreamInterface $body = null
+    ): RequestInterface {
+        return Request::create($protocolVersion, $headers, $body)->withMethod($method)->withUri(self::parseUri($uri));
+    }
+
     public function createRequest(string $method, $uri): RequestInterface
+    {
+        return new Request($method, $this::parseUri($uri));
+    }
+
+    private static function parseUri(UriInterface|string $uri): UriInterface
     {
         if (is_string($uri)) {
             $uri = parse_url($uri);
@@ -23,6 +38,6 @@ final class RequestFactory implements RequestFactoryInterface
             );
         }
 
-        return new Request($method, $uri);
+        return $uri;
     }
 }
