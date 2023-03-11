@@ -1,0 +1,49 @@
+{
+    "name": "psr-mock/http-factory-implementation",
+    "description": "Lightweight PSR-17 HTTP Client implementation provider tailored to simplify mocked testing.",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "psr",
+        "http-factory-implementation",
+        "psr-17",
+        "testing",
+        "mocking"
+    ],
+    "authors": [
+        {
+            "name": "Evan Sims",
+            "email": "hello@evansims.com",
+            "homepage": "https://evansims.com/"
+        }
+    ],
+    "homepage": "https://github.com/psr-mock/http-factory-implementation",
+    "require": {
+        "php": "^8.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
+        "psr-mock/http-message-implementation": "1.x-dev"
+    },
+    "provide": {
+        "psr/http-factory-implementation": "^1.0",
+        "psr/http-message-implementation": "^1.0"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "PsrMock\\Psr17\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PsrMock\\Psr17\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {},
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
