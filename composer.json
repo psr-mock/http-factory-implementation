@@ -1,6 +1,6 @@
 {
     "name": "psr-mock/http-factory-implementation",
-    "description": "Lightweight PSR-17 HTTP Client implementation provider tailored to simplify mocked testing.",
+    "description": "Lightweight PSR-17 HTTP Factory implementation provider tailored to simplify mocked testing.",
     "license": "MIT",
     "type": "library",
     "keywords": [
