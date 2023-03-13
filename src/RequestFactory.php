@@ -11,6 +11,9 @@ use function is_string;
 
 final class RequestFactory implements RequestFactoryInterface
 {
+    /**
+     * @psalm-suppress RedundantCast
+     */
     private function parseUri(UriInterface | string $uri): UriInterface
     {
         if (is_string($uri)) {

@@ -35,7 +35,7 @@ it('should create a new stream from a file', function () {
 });
 
 it('should create a new stream from a resource', function () {
-    $resource = fopen('php://memory', 'w');
+    $resource = fopen('php://memory', 'r+');
     fwrite($resource, 'Hello, world!');
 
     $stream = $this->streamFactory->createStreamFromResource($resource);
@@ -48,3 +48,14 @@ it('should create a new stream from a resource', function () {
 
     fclose($resource);
 });
+
+it('throws an exception when the file cannot be opened', function () {
+    $this->streamFactory->createStreamFromFile('invalid-file');
+})->throws(\RuntimeException::class, 'Could not open file: invalid-file');
+
+it('throws an exception when the resource cannot be read', function () {
+    $resource = fopen('php://memory', 'r');
+    fclose($resource);
+
+    $this->streamFactory->createStreamFromResource($resource);
+})->throws(\RuntimeException::class, 'Could not read from resource');
