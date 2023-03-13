@@ -9,16 +9,6 @@ use Psr\Http\Message\{RequestFactoryInterface, RequestInterface, StreamInterface
 
 final class RequestFactory implements RequestFactoryInterface
 {
-    public static function create(
-        string $method,
-        UriInterface|string $uri,
-        string $protocolVersion = '1.1',
-        array $headers = [],
-        ?StreamInterface $body = null
-    ): RequestInterface {
-        return Request::create($protocolVersion, $headers, $body)->withMethod($method)->withUri(self::parseUri($uri));
-    }
-
     public function createRequest(string $method, $uri): RequestInterface
     {
         return new Request($method, $this::parseUri($uri));
