@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PsrMock\Psr17;
 
-use PsrMock\Psr7\Response;
 use Psr\Http\Message\{ResponseFactoryInterface, ResponseInterface, StreamInterface};
+use PsrMock\Psr7\Response;
 
 final class ResponseFactory implements ResponseFactoryInterface
 {

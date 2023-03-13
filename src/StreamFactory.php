@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace PsrMock\Psr17;
 
-use PsrMock\Psr7\Stream;
 use Psr\Http\Message\{StreamFactoryInterface, StreamInterface};
+use PsrMock\Psr7\Stream;
+use RuntimeException;
 
 final class StreamFactory implements StreamFactoryInterface
 {
@@ -16,11 +17,23 @@ final class StreamFactory implements StreamFactoryInterface
 
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
     {
-        return new Stream(file_get_contents($filename));
+        $resource = fopen($filename, $mode);
+
+        if (false === $resource) {
+            throw new RuntimeException(sprintf('Could not open file: %s', $filename));
+        }
+
+        return new Stream($resource);
     }
 
     public function createStreamFromResource($resource): StreamInterface
     {
-        return new Stream(stream_get_contents($resource));
+        $resource = stream_get_contents($resource, null, 0);
+
+        if (false === $resource) {
+            throw new RuntimeException('Could not read from resource');
+        }
+
+        return new Stream($resource);
     }
 }
