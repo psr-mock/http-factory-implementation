@@ -38,7 +38,7 @@ final class StreamFactory implements StreamFactoryInterface
 
         try {
             $stream = stream_get_contents($resource, null, 0);
-        } catch (Throwable $e) {
+        } catch (Throwable) {
         }
 
         if (false === $stream) {
