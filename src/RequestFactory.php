@@ -13,6 +13,8 @@ final class RequestFactory implements RequestFactoryInterface
 {
     /**
      * @psalm-suppress RedundantCast
+     *
+     * @param string|UriInterface $uri
      */
     private function parseUri(UriInterface | string $uri): UriInterface
     {
