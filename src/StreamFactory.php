@@ -18,12 +18,7 @@ final class StreamFactory implements StreamFactoryInterface
 
     public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface
     {
-        $stream = false;
-
-        try {
-            $stream = fopen($filename, $mode);
-        } catch (Throwable) {
-        }
+        $stream = @fopen($filename, $mode);
 
         if (false === $stream) {
             throw new RuntimeException(sprintf('Could not open file: %s', $filename));
