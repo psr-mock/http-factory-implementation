@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PsrMock\Psr17;
 
-use Psr\Http\Message\{RequestFactoryInterface, RequestInterface, StreamInterface, UriInterface};
+use Psr\Http\Message\{RequestFactoryInterface, RequestInterface, UriInterface};
 
 use PsrMock\Psr7\{Request, Uri};
 use function is_string;
